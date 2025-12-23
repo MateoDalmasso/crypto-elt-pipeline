@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: crypto_raw
+    database: crypto-pipeline-2025
+    schema: crypto_raw
+    tables:
+      - name: top_cryptos_raw
