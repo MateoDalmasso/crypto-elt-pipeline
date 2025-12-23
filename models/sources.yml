@@ -6,3 +6,10 @@ sources:
     schema: crypto_raw
     tables:
       - name: top_cryptos_raw
+        columns:
+          - name: id
+            tests:
+              - not_null
+          - name: current_price
+            tests:
+              - not_null 
