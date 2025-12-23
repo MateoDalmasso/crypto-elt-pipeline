@@ -2,8 +2,8 @@ name: Crypto ELT Daily Pipeline
 
 on:
   schedule:
-    - cron: '0 12 * * *' # Corre todos los días a las 12:00 UTC
-  workflow_dispatch: # Permite ejecutarlo manualmente desde GitHub
+    - cron: '0 12 * * *'
+  workflow_dispatch:
 
 jobs:
   run-pipeline:
@@ -28,3 +28,11 @@ jobs:
 
     - name: Run Extraction and Load to BigQuery
       run: python extract_data.py
+
+    - name: Run dbt Transformation
+      run: |
+        dbt run --profiles-dir . --project-dir .
+      env:
+        # Esto le dice a dbt que use el archivo de llaves que creamos arriba
+        GCP_PROJECT: crypto-pipeline-2025
+        GCP_KEYFILE: google_keys.json

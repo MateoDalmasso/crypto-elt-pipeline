@@ -1,0 +1,12 @@
+crypto_transformations: # Asegúrate que este nombre coincida con el 'name' en tu dbt_project.yml
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: crypto-pipeline-2025
+      dataset: dbt_mdalmasso # O el dataset de destino que definimos
+      threads: 1
+      keyfile: google_keys.json
+      location: southamerica-west1 # Tu región
+      priority: interactive
